@@ -55,10 +55,10 @@ export default function ComoFunciona() {
           <li>
             Receba tickets de acordo com o valor da compra:
             <ul className="list-disc list-inside ml-6 space-y-1 mt-2">
-              <li>Até R$200 → 1 ticket</li>
-              <li>Até R$600 → 2 tickets</li>
-              <li>A cada R$600 adicionais → +1 ticket extra</li>
-              <li>Ex.: R$1100 = 2 tickets | R$1200 = 3 tickets | R$1800 = 4 tickets</li>
+              <li>Até R$300 → 1 ticket</li>
+              <li>De R$300 até R$1000 → 2 tickets</li>
+              <li>A cada R$1000 adicionais → +1 ticket extra</li>
+              <li>Ex.: R$700 = 2 tickets | R$1200 = 2 tickets | R$2100 = 3 tickets</li>
             </ul>
           </li>
         </ol>
@@ -165,6 +165,12 @@ export default function ComoFunciona() {
           <li>
             Clientes podem enviar <strong>novos reviews no Google</strong> a cada mês.
           </li>
+          <li>
+            📸 Já usou nossos produtos em alguma viagem?
+            Se você tem uma foto incrível dessa aventura,
+          </li>
+          <li>  posta no seu story, marca @urbanwildtnf e garanta +1 ticket extra pra concorrer ao prêmio! 🎟️✨</li>
+          
         
           <li>
             Convide amigos e familiares: quanto mais gente participar, maior a
