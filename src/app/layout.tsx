@@ -24,19 +24,29 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-  <html lang="pt-BR">
-  <body className="bg-black text-white">
-    {/* Header bem básico */}
-    <header>
-      <nav>
-        <Link href="/">Sorteio</Link> |{" "}
-        <Link href="/como-funciona">Como Funciona?</Link>
-      </nav>
-    </header>
+   <html lang="pt-BR">
+      <body className="bg-black text-white">
+        {/* Header estilizado */}
+        <header className="p-6">
+          <nav className="flex space-x-6 text-xl">
+            <Link
+              href="/"
+              className="text-white hover:text-green-500 transition-colors font-semibold"
+            >
+              Sorteio
+            </Link>
+            <Link
+              href="/como-funciona"
+              className="text-white hover:text-green-500 transition-colors font-semibold"
+            >
+              Como Funciona?
+            </Link>
+          </nav>
+        </header>
 
-    {/* Conteúdo das páginas */}
-    <main>{children}</main>
-  </body>
-</html>
+        {/* Conteúdo das páginas */}
+        <main className="p-6">{children}</main>
+      </body>
+    </html>
   );
 }

@@ -13,18 +13,28 @@ export default function Home() {
   const prizes = [500, 300, 200, 100, 50]; // valores dos prêmios
 
   // Função para sortear X vencedores
-  function drawWinners(numWinners: number) {
-    if (participants.length === 0) return;
-    const shuffled = [...participants].sort(() => 0.5 - Math.random());
-    const selected = shuffled.slice(0, numWinners).map((p, i) => {
-      const prize = prizes[i] ? ` - R$${prizes[i]}` : "";
-      return `${p}${prize}`;
-    });
-    setWinners(selected);
-    setDrawDone(true);
+ function drawWinners(numWinners: number) {
+  if (participants.length === 0) return;
 
-    // ❌ Removido: salvar no localStorage
+  // embaralha e remove duplicatas de ganhadores
+  const shuffled = [...participants].sort(() => 0.5 - Math.random());
+
+  const uniqueWinners: string[] = [];
+  for (const name of shuffled) {
+    if (!uniqueWinners.includes(name)) {
+      uniqueWinners.push(name);
+    }
+    if (uniqueWinners.length >= numWinners) break;
   }
+
+  const selected = uniqueWinners.map((p, i) => {
+    const prize = prizes[i] ? ` - R$${prizes[i]}` : "";
+    return `${p}${prize}`;
+  });
+
+  setWinners(selected);
+  setDrawDone(true);
+}
 
   // Timer
   useEffect(() => {
@@ -133,22 +143,38 @@ export default function Home() {
           </p>
         )}
       </div>
+      {/* Botão para reiniciar o teste */}
+<button
+  onClick={() => window.location.reload()}
+  className="bg-gray-700 px-4 py-2 rounded-lg mb-8 hover:bg-gray-600 transition"
+>
+  Reiniciar Teste
+</button>
 
       {/* Lista de Participantes */}
-      <section className="w-full max-w-2xl bg-gray-800 rounded-xl shadow-lg p-6 mb-8">
-        <h3 className="text-2xl mb-4 font-semibold">Participantes</h3>
-        {loading && <p>Carregando participantes...</p>}
-        {error && <p className="text-red-400">{error}</p>}
-        {!loading && !error && (
-          <ul className="space-y-2">
-            {participants.map((insta, i) => (
-              <li key={i} className="bg-gray-700 p-3 rounded-md">
-                {insta}
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
+<section className="w-full max-w-2xl bg-gray-800 rounded-xl shadow-lg p-6 mb-8">
+  <h3 className="text-2xl mb-4 font-semibold">Participantes</h3>
+  {loading && <p>Carregando participantes...</p>}
+  {error && <p className="text-red-400">{error}</p>}
+
+  {!loading && !error && (
+    <>
+     {/* ✅ contador de participantes únicos e total de entradas */}
+<p className="text-sm text-gray-400 mb-2">
+  Total: {new Set(participants).size} participantes ({participants.length} entradas)
+</p>
+
+      {/* ✅ lista com rolagem se forem muitos */}
+      <ul className="space-y-2 max-h-64 overflow-y-auto">
+        {participants.map((insta, i) => (
+          <li key={i} className="bg-gray-700 p-3 rounded-md">
+            {insta}
+          </li>
+        ))}
+      </ul>
+    </>
+  )}
+</section>
 
       {/* Resultados do Sorteio */}
       {drawDone && (
