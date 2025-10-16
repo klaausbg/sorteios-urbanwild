@@ -11,7 +11,7 @@ export default function Home() {
   const [error, setError] = useState("");
 
   const prizes = [500, 300, 200, 100, 50]; // valores dos prêmios
-  const isTestMode = true; // 👉 true = modo teste (30s) | false = produção (sorteio real)
+  const isTestMode = false; // 👉 true = modo teste (30s) | false = produção (sorteio real)
 
   // Função para sortear X vencedores
  function drawWinners(numWinners: number) {
