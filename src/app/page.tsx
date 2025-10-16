@@ -11,6 +11,7 @@ export default function Home() {
   const [error, setError] = useState("");
 
   const prizes = [500, 300, 200, 100, 50]; // valores dos prêmios
+  const isTestMode = true; // 👉 true = modo teste (30s) | false = produção (sorteio real)
 
   // Função para sortear X vencedores
  function drawWinners(numWinners: number) {
@@ -34,11 +35,41 @@ export default function Home() {
 
   setWinners(selected);
   setDrawDone(true);
+
+ // 🕒 Salva vencedores e hora do sorteio no localStorage
+  localStorage.setItem("winners", JSON.stringify(selected));
+  localStorage.setItem("drawTime", new Date().toISOString());
+
+
 }
 
+
+
+// ✅ Recuperar ganhadores do localStorage se ainda estiver dentro de 3h
+useEffect(() => {
+  const savedWinners = localStorage.getItem("winners");
+  const savedDrawTime = localStorage.getItem("drawTime");
+
+  if (savedWinners && savedDrawTime) {
+    const drawDate = new Date(savedDrawTime);
+    const now = new Date();
+    const diffHours = (now.getTime() - drawDate.getTime()) / (1000 * 60 * 60);
+
+    if (diffHours < 24) {
+      // Ainda dentro do período de 3 horas → mostra vencedores
+      setWinners(JSON.parse(savedWinners));
+      setDrawDone(true);
+    } else {
+      // Passou das 3h → limpa localStorage e reinicia sorteio
+      localStorage.removeItem("winners");
+      localStorage.removeItem("drawTime");
+      setWinners([]);
+      setDrawDone(false);
+    }
+  }
+}, []);
   // Timer
   useEffect(() => {
-    const isTestMode = false; // 👉 true = teste 30s, false = produção
 
     let endTime: number;
     const now = new Date();
@@ -143,13 +174,16 @@ export default function Home() {
           </p>
         )}
       </div>
+      
       {/* Botão para reiniciar o teste */}
-<button
-  onClick={() => window.location.reload()}
-  className="bg-gray-700 px-4 py-2 rounded-lg mb-8 hover:bg-gray-600 transition"
->
-  Reiniciar Teste
-</button>
+{isTestMode && (
+  <button
+    onClick={() => window.location.reload()}
+    className="bg-gray-700 px-4 py-2 rounded-lg mb-8 hover:bg-gray-600 transition"
+  >
+    Reiniciar Teste
+  </button>
+)}
 
       {/* Lista de Participantes */}
 <section className="w-full max-w-2xl bg-gray-800 rounded-xl shadow-lg p-6 mb-8">
