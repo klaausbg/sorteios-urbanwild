@@ -15,15 +15,14 @@ export default function ComoFunciona() {
           Na <strong>Urban Wild</strong>, queremos agradecer quem já caminha com
           a gente e também abrir espaço para quem ainda não comprou conosco.
           Todo mês realizamos um sorteio com{" "}
-          <strong>5 prêmios em créditos</strong> que podem ser usados em
+          <strong>3 prêmios em créditos</strong> que podem ser usados em
           qualquer produto do site:
         </p>
         <ul className="list-disc list-inside space-y-1">
-          <li>🥇 1º lugar → R$500</li>
-          <li>🥈 2º lugar → R$250</li>
-          <li>🥉 3º lugar → R$150</li>
-          <li>🎖️ 4º lugar → R$100</li>
-          <li>🎖️ 5º lugar → R$50</li>
+          <li>🥇 1º lugar → R$300</li>
+          <li>🥈 2º lugar → R$150</li>
+          <li>🥉 3º lugar → R$50</li>
+    
         </ul>
         <h3 className="text-xl font-semibold mt-4">⚡ Importante:</h3>
         <ul className="list-disc list-inside space-y-1">
@@ -55,10 +54,10 @@ export default function ComoFunciona() {
           <li>
             Receba tickets de acordo com o valor da compra:
             <ul className="list-disc list-inside ml-6 space-y-1 mt-2">
-              <li>Até R$300 → 1 ticket</li>
-              <li>De R$300 até R$1000 → 2 tickets</li>
+              <li>Até R$1000 → 1 ticket</li>
+              <li>De R$1000 até R$2000 → 2 tickets</li>
               <li>A cada R$1000 adicionais → +1 ticket extra</li>
-              <li>Ex.: R$700 = 2 tickets | R$1200 = 2 tickets | R$2100 = 3 tickets</li>
+              <li>Ex.: R$700 = 1 ticket | R$1200 = 2 tickets | R$2100 = 3 tickets</li>
             </ul>
           </li>
         </ol>
@@ -115,9 +114,9 @@ export default function ComoFunciona() {
             pode competir novamente nos meses seguintes.
           </li>
           <li>
-            Quem já comprou conosco pode apenas{" "}
-            <strong>postar um novo review no Google</strong> a cada sorteio para
-            validar a participação.
+            Se estiver participando pela segunda vez (ou mais),
+            <strong> é necessário fazer um novo review e compartilhar uma foto do nosso perfil </strong> 
+            no seu story para validar a participação.
           </li>
           <li>
             Após cada sorteio, publicamos a{" "}
