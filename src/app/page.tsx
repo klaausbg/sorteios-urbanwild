@@ -41,7 +41,7 @@ export default function Home() {
   localStorage.setItem("drawTime", new Date().toISOString());
 
   // Envia os vencedores para a planilha (API do Google)
-fetch("https://script.google.com/macros/s/AKfycbyTzmoba5CAF34KPTXEVLaGY4FR_DSuMC27AdY_1-f35mOKEL7nEVgu1uk5OcTO9r7cvw/exec", {
+fetch("https://script.google.com/macros/s/AKfycbxX2u5Yk6LWJr7Ha7XhZynN5GEsk085JCgFd5A0s__cMxjqpv_h-HiqhB7DDOHV1nOC/exec", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({ winners: selected }),
@@ -56,29 +56,6 @@ fetch("https://script.google.com/macros/s/AKfycbyTzmoba5CAF34KPTXEVLaGY4FR_DSuMC
 
 
 
-// // ✅ Recuperar ganhadores do localStorage se ainda estiver dentro de 3h
-// useEffect(() => {
-//   const savedWinners = localStorage.getItem("winners");
-//   const savedDrawTime = localStorage.getItem("drawTime");
-
-//   if (savedWinners && savedDrawTime) {
-//     const drawDate = new Date(savedDrawTime);
-//     const now = new Date();
-//     const diffHours = (now.getTime() - drawDate.getTime()) / (1000 * 60 * 60);
-
-//     if (diffHours < 24) {
-//       // Ainda dentro do período de 3 horas → mostra vencedores
-//       setWinners(JSON.parse(savedWinners));
-//       setDrawDone(true);
-//     } else {
-//       // Passou das 3h → limpa localStorage e reinicia sorteio
-//       localStorage.removeItem("winners");
-//       localStorage.removeItem("drawTime");
-//       setWinners([]);
-//       setDrawDone(false);
-//     }
-//   }
-// }, []);
   // Timer
   useEffect(() => {
 
@@ -170,7 +147,7 @@ useEffect(() => {
   async function fetchWinners() {
     try {
       const res = await fetch(
-        "https://script.google.com/macros/s/AKfycbyTzmoba5CAF34KPTXEVLaGY4FR_DSuMC27AdY_1-f35mOKEL7nEVgu1uk5OcTO9r7cvw/exec"
+        "https://script.google.com/macros/s/AKfycbxX2u5Yk6LWJr7Ha7XhZynN5GEsk085JCgFd5A0s__cMxjqpv_h-HiqhB7DDOHV1nOC/exec"
       );
       const data = await res.json();
 
