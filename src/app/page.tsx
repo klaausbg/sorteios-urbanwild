@@ -1,5 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwZ4a6s_JZ26gt4tE_K-4h3aM6QDkEWRF12iqfglTOf5oSc0R7Z_CyPa3y7_Znlm-vy/exec";
+
 
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState("");
@@ -9,6 +11,10 @@ export default function Home() {
   const [nextDrawDate, setNextDrawDate] = useState<Date | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [pastWinners, setPastWinners] = useState<
+  { date: string; name: string; prize: string }[]
+>([]);
+
 
   const prizes = [500, 300, 200, 100, 50]; // valores dos prêmios
   const isTestMode = false; // 👉 true = modo teste (30s) | false = produção (sorteio real)
@@ -36,12 +42,10 @@ export default function Home() {
   setWinners(selected);
   setDrawDone(true);
 
- // 🕒 Salva vencedores e hora do sorteio no localStorage
-  localStorage.setItem("winners", JSON.stringify(selected));
-  localStorage.setItem("drawTime", new Date().toISOString());
+
 
   // Envia os vencedores para a planilha (API do Google)
-fetch("https://script.google.com/macros/s/AKfycbxX2u5Yk6LWJr7Ha7XhZynN5GEsk085JCgFd5A0s__cMxjqpv_h-HiqhB7DDOHV1nOC/exec", {
+fetch(GOOGLE_SCRIPT_URL, {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({ winners: selected }),
@@ -146,9 +150,7 @@ useEffect(() => {
 useEffect(() => {
   async function fetchWinners() {
     try {
-      const res = await fetch(
-        "https://script.google.com/macros/s/AKfycbxX2u5Yk6LWJr7Ha7XhZynN5GEsk085JCgFd5A0s__cMxjqpv_h-HiqhB7DDOHV1nOC/exec"
-      );
+      const res = await fetch(GOOGLE_SCRIPT_URL);
       const data = await res.json();
 
       if (data.length > 0) {
@@ -170,7 +172,28 @@ useEffect(() => {
   return () => clearTimeout(timeout);
 }, []);
 
+useEffect(() => {
+  async function fetchPastWinners() {
+    try {
+      const res = await fetch(`${GOOGLE_SCRIPT_URL}?action=getPast`);
+      const data = await res.json();
 
+      setPastWinners(
+  [...data]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) // Ordena do mais recente para o mais antigo
+    .map((w: { name: string; prize: string; date: string }) => ({
+      name: w.name,
+      prize: w.prize,
+      date: new Date(w.date).toLocaleDateString("pt-BR"),
+    }))
+);
+    } catch (err) {
+      console.error("Erro ao buscar histórico de sorteios:", err);
+    }
+  }
+
+  fetchPastWinners();
+}, []);
 
 
 
@@ -245,6 +268,61 @@ useEffect(() => {
           </ul>
         </section>
       )}
+
+          {/* Histórico de Sorteios */}
+      {pastWinners.length > 0 && (
+  <section className="w-full max-w-2xl bg-gray-900 rounded-xl shadow-lg p-6 mb-8">
+    <h3 className="text-2xl mb-4 font-semibold">🏁 Histórico de Sorteios</h3>
+
+    {/* 🔹 Grupo do sorteio de Outubro */}
+    <div className="border border-gray-700 rounded-xl p-4 mb-6 bg-gray-800">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+        <h4 className="text-xl font-semibold text-white">
+          🎲 Sorteio de Outubro / 2025
+        </h4>
+        <p className="text-gray-400 text-sm mt-2 sm:mt-0">
+          11 participantes • 22 entradas
+        </p>
+      </div>
+
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm text-left text-gray-300">
+          <thead className="text-gray-400 border-b border-gray-700">
+            <tr>
+              <th className="py-2 px-3">Data</th>
+              <th className="py-2 px-3">Ganhador</th>
+              <th className="py-2 px-3">Prêmio</th>
+            </tr>
+          </thead>
+          <tbody>
+            {pastWinners.map((w, i) => (
+              <tr
+                key={i}
+                className="border-b border-gray-800 hover:bg-gray-700 transition"
+              >
+                <td className="py-2 px-3">{w.date}</td>
+                <td className="py-2 px-3">{w.name}</td>
+                <td className="py-2 px-3">{w.prize}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+)}
+
+      <footer className="mt-8 text-gray-500 text-sm text-center">
+  © {new Date().getFullYear()} Urban Wild —{" "}
+  <a
+    href="https://urbanwildtnf.com.br"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="underline hover:text-gray-300"
+  >
+    Loja oficial
+  </a>
+</footer>
     </main>
   );
 }
