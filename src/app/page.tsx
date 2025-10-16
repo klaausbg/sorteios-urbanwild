@@ -56,29 +56,29 @@ fetch("https://script.google.com/macros/s/AKfycbyTzmoba5CAF34KPTXEVLaGY4FR_DSuMC
 
 
 
-// ✅ Recuperar ganhadores do localStorage se ainda estiver dentro de 3h
-useEffect(() => {
-  const savedWinners = localStorage.getItem("winners");
-  const savedDrawTime = localStorage.getItem("drawTime");
+// // ✅ Recuperar ganhadores do localStorage se ainda estiver dentro de 3h
+// useEffect(() => {
+//   const savedWinners = localStorage.getItem("winners");
+//   const savedDrawTime = localStorage.getItem("drawTime");
 
-  if (savedWinners && savedDrawTime) {
-    const drawDate = new Date(savedDrawTime);
-    const now = new Date();
-    const diffHours = (now.getTime() - drawDate.getTime()) / (1000 * 60 * 60);
+//   if (savedWinners && savedDrawTime) {
+//     const drawDate = new Date(savedDrawTime);
+//     const now = new Date();
+//     const diffHours = (now.getTime() - drawDate.getTime()) / (1000 * 60 * 60);
 
-    if (diffHours < 24) {
-      // Ainda dentro do período de 3 horas → mostra vencedores
-      setWinners(JSON.parse(savedWinners));
-      setDrawDone(true);
-    } else {
-      // Passou das 3h → limpa localStorage e reinicia sorteio
-      localStorage.removeItem("winners");
-      localStorage.removeItem("drawTime");
-      setWinners([]);
-      setDrawDone(false);
-    }
-  }
-}, []);
+//     if (diffHours < 24) {
+//       // Ainda dentro do período de 3 horas → mostra vencedores
+//       setWinners(JSON.parse(savedWinners));
+//       setDrawDone(true);
+//     } else {
+//       // Passou das 3h → limpa localStorage e reinicia sorteio
+//       localStorage.removeItem("winners");
+//       localStorage.removeItem("drawTime");
+//       setWinners([]);
+//       setDrawDone(false);
+//     }
+//   }
+// }, []);
   // Timer
   useEffect(() => {
 
