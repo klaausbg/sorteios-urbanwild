@@ -194,24 +194,7 @@ useEffect(() => {
 
 
 
-  // Buscar ganhadores públicos da planilha
-useEffect(() => {
-  async function fetchWinners() {
-    try {
-      const res = await fetch("https://script.google.com/macros/s/AKfycbxv25De1lMsaxydageT3J2M8_E1pR-Q8j3gJwkbBa4TXqkKofWxku-ZSewSZFKgWL60/exec");
-      const data = await res.json();
 
-      if (data.length > 0) {
-        setWinners(data.map(w => `${w.name} - ${w.prize}`));
-        setDrawDone(true);
-      }
-    } catch (err) {
-      console.error("Erro ao buscar ganhadores públicos:", err);
-    }
-  }
-
-  fetchWinners();
-}, []);
 
 
   // ❌ Removido: recuperar ganhadores do localStorage
