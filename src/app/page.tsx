@@ -153,7 +153,9 @@ useEffect(() => {
 
       if (data.length > 0) {
         // ⚙️ Substitui o estado pelos ganhadores da planilha
-        setWinners(data.map((w) => `${w.name} - ${w.prize}`));
+        setWinners(
+  data.map((w: { name: string; prize: string }) => `${w.name} - ${w.prize}`)
+);
         setDrawDone(true);
       } else {
         console.log("Nenhum ganhador encontrado na planilha.");
