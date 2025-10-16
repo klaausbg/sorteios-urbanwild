@@ -130,40 +130,67 @@ useEffect(() => {
     return () => clearInterval(interval);
   }, [participants, drawDone]);
 
-  // Buscar dados da planilha
-  useEffect(() => {
-    async function fetchParticipants() {
-      try {
-        setLoading(true);
-        setError("");
+ // Buscar dados da planilha
+useEffect(() => {
+  async function fetchParticipants() {
+    try {
+      setLoading(true);
+      setError("");
 
-        const csvUrl =
-          "https://docs.google.com/spreadsheets/d/e/2PACX-1vThBgPwtFNP0_Aurptx2EaM38wI9cWhg4w79gyqcygmMCuktFGBiOreqIdfnrKpC7VI4cF6LWVqG-oK/pub?output=csv";
+      const csvUrl =
+        "https://docs.google.com/spreadsheets/d/e/2PACX-1vThBgPwtFNP0_Aurptx2EaM38wI9cWhg4w79gyqcygmMCuktFGBiOreqIdfnrKpC7VI4cF6LWVqG-oK/pub?output=csv";
 
-        const res = await fetch(`${csvUrl}&t=${Date.now()}`); // força a evitar cache
-        const text = await res.text();
-        const lines = text.split("\n");
+      const res = await fetch(`${csvUrl}&t=${Date.now()}`); // força a evitar cache
+      const text = await res.text();
+      const lines = text.split("\n");
 
-        // Extrai coluna "Instagram" (segunda coluna)
-        const data = lines
-          .slice(1)
-          .map((line) => {
-            const cols = line.split(",");
-            return cols[1]?.replace(/[\r\n"]+/g, "").trim();
-          })
-          .filter((v): v is string => Boolean(v));
+      // Extrai coluna "Instagram" (segunda coluna)
+      const data = lines
+        .slice(1)
+        .map((line) => {
+          const cols = line.split(",");
+          return cols[1]?.replace(/[\r\n"]+/g, "").trim();
+        })
+        .filter((v): v is string => Boolean(v));
 
-        setParticipants(data);
-      } catch (err) {
-        console.error("Erro ao buscar participantes:", err);
-        setError("Não foi possível carregar os participantes.");
-      } finally {
-        setLoading(false);
-      }
+      setParticipants(data);
+    } catch (err) {
+      console.error("Erro ao buscar participantes:", err);
+      setError("Não foi possível carregar os participantes.");
+    } finally {
+      setLoading(false);
     }
+  }
 
-    fetchParticipants();
-  }, []);
+  fetchParticipants();
+}, []);
+
+// ✅ Buscar ganhadores públicos da planilha (novo trecho)
+useEffect(() => {
+  async function fetchWinners() {
+    try {
+      const res = await fetch(
+        "https://script.google.com/macros/s/AKfycbxv25De1lMsaxydageT3J2M8_E1pR-Q8j3gJwkbBa4TXqkKofWxku-ZSewSZFKgWL60/exec"
+      );
+      const data = await res.json();
+
+      if (data.length > 0) {
+        // ⚙️ Substitui o estado pelos ganhadores da planilha
+        setWinners(data.map((w) => `${w.name} - ${w.prize}`));
+        setDrawDone(true);
+      } else {
+        console.log("Nenhum ganhador encontrado na planilha.");
+      }
+    } catch (err) {
+      console.error("Erro ao buscar ganhadores públicos:", err);
+    }
+  }
+
+  // Espera 1 segundo pra garantir que o localStorage não interfira
+  const timeout = setTimeout(fetchWinners, 1000);
+  return () => clearTimeout(timeout);
+}, []);
+
 
 
 
