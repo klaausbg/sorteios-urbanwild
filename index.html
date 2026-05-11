@@ -1,0 +1,1555 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Urban Wild — Peças originais selecionadas</title>
+    <meta
+      name="description"
+      content="Peças originais The North Face, novas e usadas, com curadoria e preço justo. Envio para todo o Brasil."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --black: #050505;
+        --dark: #0e0e0e;
+        --dark-2: #161616;
+        --dark-3: #202020;
+        --sand: #c8a87e;
+        --sand-light: #dfc4a0;
+        --cream: #ede8df;
+        --white: #fafaf7;
+        --gray-mid: #6a6a67;
+        --gray-light: #aeaba6;
+        --border: rgba(255, 255, 255, 0.07);
+        --font-display: "Bebas Neue", sans-serif;
+        --font-body: "DM Sans", sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--black);
+        color: var(--white);
+        font-family: var(--font-body);
+        line-height: 1.65;
+        overflow-x: hidden;
+      }
+
+      /* ━━━ NAV ━━━ */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.1rem 3rem;
+        transition:
+          background 0.4s,
+          border-color 0.4s,
+          padding 0.3s;
+        border-bottom: 1px solid transparent;
+      }
+      nav.scrolled {
+        background: rgba(5, 5, 5, 0.94);
+        backdrop-filter: blur(16px);
+        border-bottom-color: var(--border);
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+      }
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        text-decoration: none;
+        color: var(--white);
+      }
+      .nav-logo svg {
+        width: 40px;
+        height: auto;
+      }
+      .nav-logo-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+      }
+      .nav-logo-name {
+        font-family: var(--font-display);
+        font-size: 1.3rem;
+        letter-spacing: 0.14em;
+        color: var(--white);
+      }
+      .nav-logo-sub {
+        font-size: 0.56rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--white);
+        margin-top: 1px;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 2.25rem;
+        list-style: none;
+      }
+      .nav-links a {
+        color: var(--gray-light);
+        text-decoration: none;
+        font-size: 0.77rem;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--white);
+      }
+      .nav-btn {
+        background: var(--white) !important;
+        color: var(--black) !important;
+        padding: 0.5rem 1.2rem;
+        border-radius: 1px;
+        font-weight: 700 !important;
+        letter-spacing: 0.08em !important;
+      }
+      .nav-btn:hover {
+        background: var(--cream) !important;
+      }
+      .hamburger {
+        display: none;
+        cursor: pointer;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .hamburger span {
+        display: block;
+        width: 22px;
+        height: 1.5px;
+        background: var(--white);
+      }
+      @media (max-width: 768px) {
+        nav {
+          padding: 0.9rem 1.5rem;
+        }
+        .nav-links {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+      }
+
+      /* ━━━ HERO ━━━ */
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: flex-end;
+        overflow: hidden;
+      }
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        /*
+        Para usar a foto da montanha enviada, coloque o arquivo
+        na mesma pasta do HTML e altere a URL abaixo:
+        background-image: url('monte-everest.jpg');
+      */
+        background-image: url("https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1920&q=85");
+        background-size: cover;
+        background-position: center 25%;
+        transform: scale(1.06);
+        animation: heroZoom 28s ease-in-out infinite alternate;
+        will-change: transform;
+      }
+      @keyframes heroZoom {
+        from {
+          transform: scale(1.06);
+        }
+        to {
+          transform: scale(1.12);
+        }
+      }
+      .hero-veil {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          175deg,
+          rgba(5, 5, 5, 0.2) 0%,
+          rgba(5, 5, 5, 0.1) 40%,
+          rgba(5, 5, 5, 0.88) 100%
+        );
+      }
+      .hero-topo {
+        position: absolute;
+        inset: 0;
+        opacity: 0.035;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='480'%3E%3Ccircle cx='240' cy='240' r='220' fill='none' stroke='%23ffffff' stroke-width='1.2'/%3E%3Ccircle cx='240' cy='240' r='180' fill='none' stroke='%23ffffff' stroke-width='1'/%3E%3Ccircle cx='240' cy='240' r='140' fill='none' stroke='%23ffffff' stroke-width='0.9'/%3E%3Ccircle cx='240' cy='240' r='100' fill='none' stroke='%23ffffff' stroke-width='0.8'/%3E%3Ccircle cx='240' cy='240' r='60' fill='none' stroke='%23ffffff' stroke-width='0.7'/%3E%3Ccircle cx='240' cy='240' r='25' fill='none' stroke='%23ffffff' stroke-width='0.7'/%3E%3C/svg%3E");
+        background-size: 340px 340px;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 3rem 6.5rem;
+      }
+      .hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        border: 1px solid rgba(255, 255, 255, 0.26);
+        color: var(--cream);
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        padding: 0.42rem 1rem;
+        border-radius: 1px;
+        margin-bottom: 1.5rem;
+      }
+      .eyebrow-dot {
+        width: 5px;
+        height: 5px;
+        background: var(--sand);
+        border-radius: 50%;
+        animation: blink 2.2s ease infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.2;
+        }
+      }
+      .hero-title {
+        font-family: var(--font-display);
+        font-size: clamp(4.5rem, 12vw, 11rem);
+        line-height: 0.87;
+        letter-spacing: 0.02em;
+        color: var(--white);
+        margin-bottom: 1.5rem;
+      }
+      .hero-title .accent {
+        color: var(--sand);
+      }
+      .hero-sub {
+        font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+        color: #f2eee7;
+        font-weight: 300;
+        max-width: 480px;
+        margin-bottom: 2.5rem;
+        line-height: 1.82;
+      }
+      .hero-sub strong {
+        color: color: #ffffff;
+        font-weight: 500;
+      }
+      .hero-btns {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 4rem;
+      }
+      .btn-white {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--white);
+        color: var(--black);
+        font-family: var(--font-body);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 1rem 2rem;
+        border-radius: 1px;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+      }
+      .btn-white:hover {
+        background: var(--cream);
+        transform: translateY(-2px);
+      }
+      .btn-sand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--sand);
+        color: var(--black);
+        font-family: var(--font-body);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 1rem 2rem;
+        border-radius: 1px;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+      }
+      .btn-sand:hover {
+        background: var(--sand-light);
+        transform: translateY(-2px);
+      }
+      .btn-outline {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: transparent;
+        color: var(--white);
+        font-family: var(--font-body);
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 1rem 2rem;
+        border-radius: 1px;
+        border: 1.5px solid rgba(255, 255, 255, 0.3);
+        text-decoration: none;
+        transition:
+          border-color 0.2s,
+          background 0.2s,
+          transform 0.2s;
+      }
+      .btn-outline:hover {
+        border-color: var(--white);
+        background: rgba(255, 255, 255, 0.07);
+        transform: translateY(-2px);
+      }
+      .hero-stats {
+        display: flex;
+        gap: 3.5rem;
+        flex-wrap: wrap;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .stat-val {
+        font-family: var(--font-display);
+        font-size: 2.8rem;
+        color: var(--white);
+        letter-spacing: 0.04em;
+        line-height: 1;
+      }
+      .stat-label {
+        font-size: 0.68rem;
+        color: var(--gray-mid);
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        margin-top: 0.3rem;
+      }
+      @media (max-width: 768px) {
+        .hero-content {
+          padding: 0 1.5rem 4.5rem;
+        }
+        .hero-stats {
+          gap: 2rem;
+        }
+      }
+
+      /* ━━━ TICKER ━━━ */
+      .ticker {
+        background: var(--white);
+        overflow: hidden;
+        padding: 0.85rem 0;
+      }
+      .ticker-track {
+        display: flex;
+        animation: tick 38s linear infinite;
+        white-space: nowrap;
+      }
+      .ticker:hover .ticker-track {
+        animation-play-state: paused;
+      }
+      .t-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.9rem;
+        font-family: var(--font-display);
+        font-size: 0.95rem;
+        letter-spacing: 0.14em;
+        color: var(--black);
+        padding: 0 1.5rem;
+        flex-shrink: 0;
+      }
+      .t-dot {
+        width: 4px;
+        height: 4px;
+        background: rgba(5, 5, 5, 0.3);
+        border-radius: 50%;
+      }
+      @keyframes tick {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ━━━ SECTION BASE ━━━ */
+      section {
+        padding: 7rem 3rem;
+      }
+      .inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .s-label {
+        display: inline-block;
+        font-size: 0.67rem;
+        font-weight: 700;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+        color: var(--sand);
+        margin-bottom: 0.85rem;
+      }
+      .s-title {
+        font-family: var(--font-display);
+        font-size: clamp(2.8rem, 6vw, 5.5rem);
+        line-height: 0.9;
+        letter-spacing: 0.03em;
+        color: var(--white);
+        margin-bottom: 1.5rem;
+      }
+      .s-desc {
+        font-size: 1rem;
+        color: var(--gray-mid);
+        max-width: 480px;
+        line-height: 1.82;
+      }
+      @media (max-width: 768px) {
+        section {
+          padding: 4.5rem 1.5rem;
+        }
+      }
+
+      /* ━━━ BENEFITS ━━━ */
+      .benefits-section {
+        background: var(--dark);
+      }
+      .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
+        gap: 1px;
+        margin-top: 4rem;
+        border: 1px solid var(--border);
+      }
+      .b-card {
+        background: var(--dark);
+        padding: 2.25rem 2rem;
+        position: relative;
+        overflow: hidden;
+        transition: background 0.3s;
+      }
+      .b-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 2px;
+        width: 0;
+        background: var(--white);
+        transition: width 0.45s ease;
+      }
+      .b-card:hover {
+        background: var(--dark-2);
+      }
+      .b-card:hover::before {
+        width: 100%;
+      }
+      .b-icon {
+        font-size: 1rem;
+        color: var(--sand);
+        margin-bottom: 1.25rem;
+        display: block;
+      }
+      .b-title {
+        font-family: var(--font-display);
+        font-size: 1.4rem;
+        letter-spacing: 0.07em;
+        color: var(--white);
+        margin-bottom: 0.6rem;
+      }
+      .b-text {
+        font-size: 0.875rem;
+        color: var(--gray-mid);
+        line-height: 1.8;
+      }
+
+      /* ━━━ CATEGORIES ━━━ */
+      .categories-section {
+        background: var(--black);
+      }
+      .cat-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 1px;
+        margin-top: 4rem;
+        border: 1px solid var(--border);
+      }
+      .cat-card {
+        background: var(--dark);
+        padding: 2rem 1.75rem;
+        text-decoration: none;
+        display: block;
+        position: relative;
+        overflow: hidden;
+        transition: background 0.3s;
+      }
+      .cat-card::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        width: 0;
+        background: var(--sand);
+        transition: width 0.4s ease;
+      }
+      .cat-card:hover {
+        background: var(--dark-2);
+      }
+      .cat-card:hover::after {
+        width: 100%;
+      }
+      .cat-icon {
+        font-size: 1.75rem;
+        margin-bottom: 1.1rem;
+        display: block;
+      }
+      .cat-name {
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        letter-spacing: 0.07em;
+        color: var(--white);
+        margin-bottom: 0.65rem;
+        line-height: 1.05;
+      }
+      .cat-desc {
+        font-size: 0.84rem;
+        color: var(--gray-mid);
+        line-height: 1.72;
+        margin-bottom: 1.25rem;
+      }
+      .cat-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--sand);
+      }
+      .cat-arrow {
+        transition: transform 0.25s;
+        display: inline-block;
+      }
+      .cat-card:hover .cat-arrow {
+        transform: translateX(5px);
+      }
+
+      /* ━━━ WHY US ━━━ */
+      .why-section {
+        background: var(--dark);
+        position: relative;
+        overflow: hidden;
+      }
+      .why-wm {
+        position: absolute;
+        right: -2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-family: var(--font-display);
+        font-size: 28vw;
+        color: rgba(255, 255, 255, 0.018);
+        line-height: 1;
+        user-select: none;
+        pointer-events: none;
+      }
+      .why-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6rem;
+        align-items: start;
+        position: relative;
+      }
+      .why-list {
+        list-style: none;
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.1rem;
+      }
+      .why-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.85rem;
+        font-size: 0.92rem;
+        color: var(--gray-light);
+        line-height: 1.72;
+      }
+      .why-check {
+        width: 18px;
+        height: 18px;
+        min-width: 18px;
+        border-radius: 50%;
+        border: 1.5px solid var(--gray-mid);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--sand);
+        font-size: 0.65rem;
+        margin-top: 3px;
+      }
+      .why-card {
+        background: var(--dark-2);
+        border: 1px solid var(--border);
+        padding: 2.75rem 2.5rem;
+      }
+      .why-quote {
+        font-family: var(--font-display);
+        font-size: 2rem;
+        color: var(--white);
+        letter-spacing: 0.06em;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+      }
+      .why-quote em {
+        color: var(--sand);
+        font-style: normal;
+      }
+      .why-text {
+        font-size: 0.92rem;
+        color: var(--gray-mid);
+        line-height: 1.88;
+        margin-bottom: 1.25rem;
+      }
+      @media (max-width: 900px) {
+        .why-inner {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+      }
+
+      /* ━━━ TESTIMONIALS ━━━ */
+      .testimonials-section {
+        background: var(--black);
+      }
+      .test-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1px;
+        margin-top: 4rem;
+        border: 1px solid var(--border);
+      }
+      .test-card {
+        background: var(--dark);
+        padding: 2rem;
+        position: relative;
+        transition: background 0.3s;
+      }
+      .test-card:hover {
+        background: var(--dark-2);
+      }
+      .test-badge {
+        position: absolute;
+        top: 1.1rem;
+        right: 1.1rem;
+        font-size: 0.63rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--sand);
+        background: rgba(200, 168, 126, 0.1);
+        padding: 0.22rem 0.6rem;
+        border-radius: 1px;
+      }
+      .test-stars {
+        color: var(--sand);
+        font-size: 0.85rem;
+        letter-spacing: 0.1em;
+        margin-bottom: 1rem;
+      }
+      .test-text {
+        font-size: 0.91rem;
+        color: var(--gray-light);
+        line-height: 1.78;
+        font-style: italic;
+        margin-bottom: 1.5rem;
+      }
+      .test-author {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .test-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--dark-3);
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-display);
+        font-size: 1rem;
+        color: var(--sand);
+        flex-shrink: 0;
+      }
+      .test-name {
+        font-size: 0.87rem;
+        font-weight: 600;
+        color: var(--white);
+      }
+      .test-city {
+        font-size: 0.74rem;
+        color: var(--gray-mid);
+      }
+
+      /* ━━━ FINAL CTA ━━━ */
+      .cta-section {
+        background: var(--cream);
+        text-align: center;
+        padding: 9rem 3rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-mountain {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 680px;
+        opacity: 0.07;
+        pointer-events: none;
+      }
+      .cta-inner {
+        position: relative;
+        z-index: 1;
+      }
+      .cta-inner .s-label {
+        color: var(--gray-mid);
+      }
+      .cta-inner .s-title {
+        color: var(--black);
+        font-size: clamp(3.5rem, 9vw, 9rem);
+      }
+      .cta-sub {
+        font-size: 1.05rem;
+        color: var(--gray-mid);
+        max-width: 420px;
+        margin: 0 auto 3rem;
+        line-height: 1.82;
+      }
+      .cta-btns {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .btn-outline-dark {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: transparent;
+        color: var(--black);
+        font-family: var(--font-body);
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 1rem 2rem;
+        border-radius: 1px;
+        border: 1.5px solid rgba(5, 5, 5, 0.28);
+        text-decoration: none;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+      }
+      .btn-outline-dark:hover {
+        background: rgba(5, 5, 5, 0.07);
+        border-color: rgba(5, 5, 5, 0.55);
+      }
+      .cta-urgency {
+        margin-top: 2rem;
+        font-size: 0.73rem;
+        color: var(--gray-mid);
+        letter-spacing: 0.1em;
+      }
+
+      /* ━━━ FOOTER ━━━ */
+      footer {
+        background: var(--black);
+        border-top: 1px solid var(--border);
+        padding: 5rem 3rem 2.5rem;
+      }
+      .footer-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .footer-top {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 3.5rem;
+        margin-bottom: 3.5rem;
+      }
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-bottom: 1rem;
+      }
+      .footer-logo svg {
+        width: 38px;
+      }
+      .footer-logo-name {
+        font-family: var(--font-display);
+        font-size: 1.85rem;
+        letter-spacing: 0.12em;
+        color: var(--white);
+        line-height: 1;
+      }
+      .footer-logo-sub {
+        font-size: 0.54rem;
+        letter-spacing: 0.2em;
+        color: var(--gray-mid);
+        text-transform: uppercase;
+        margin-top: 2px;
+      }
+      .footer-tagline {
+        font-size: 0.83rem;
+        color: var(--gray-mid);
+        line-height: 1.78;
+        max-width: 240px;
+        margin-bottom: 1.75rem;
+      }
+      .footer-socials {
+        display: flex;
+        gap: 0.6rem;
+      }
+      .social-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        color: var(--gray-light);
+        font-size: 0.74rem;
+        font-weight: 500;
+        padding: 0.46rem 0.9rem;
+        border-radius: 1px;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+      }
+      .social-pill:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.22);
+      }
+      .f-col-title {
+        font-family: var(--font-display);
+        font-size: 0.95rem;
+        letter-spacing: 0.14em;
+        color: var(--white);
+        margin-bottom: 1.25rem;
+      }
+      .f-col ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+      }
+      .f-col ul li a,
+      .f-col ul li span {
+        font-size: 0.81rem;
+        color: var(--gray-mid);
+        text-decoration: none;
+        transition: color 0.2s;
+        line-height: 1.5;
+        display: block;
+      }
+      .f-col ul li a:hover {
+        color: var(--sand);
+      }
+      .footer-bottom {
+        border-top: 1px solid var(--border);
+        padding-top: 1.75rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .footer-copy {
+        font-size: 0.75rem;
+        color: var(--gray-mid);
+      }
+      .footer-auth {
+        font-size: 0.75rem;
+        color: var(--sand);
+      }
+      @media (max-width: 900px) {
+        .footer-top {
+          grid-template-columns: 1fr 1fr;
+          gap: 2.5rem;
+        }
+      }
+      @media (max-width: 600px) {
+        .footer-top {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .footer-bottom {
+          flex-direction: column;
+          text-align: center;
+        }
+        footer {
+          padding: 4rem 1.5rem 2rem;
+        }
+      }
+
+      /* ━━━ REVEAL ━━━ */
+      .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+      .d1 {
+        transition-delay: 0.08s;
+      }
+      .d2 {
+        transition-delay: 0.16s;
+      }
+      .d3 {
+        transition-delay: 0.24s;
+      }
+      .d4 {
+        transition-delay: 0.32s;
+      }
+      .d5 {
+        transition-delay: 0.4s;
+      }
+      .d6 {
+        transition-delay: 0.48s;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- SVG symbol reutilizado no nav, footer e CTA -->
+    <svg style="display: none" aria-hidden="true">
+      <symbol id="mtn" viewBox="0 0 220 110">
+        <path
+          d="M18 106 L76 38 L92 58 L97 48 L110 6 L123 48 L128 38 L144 58 L202 106 Z"
+          fill="currentColor"
+        />
+        <path d="M97 20 L110 6 L116 24 Z" fill="black" opacity="0.22" />
+        <path d="M123 46 L128 38 L135 52 Z" fill="black" opacity="0.18" />
+        <path d="M72 48 L76 38 L83 52 Z" fill="black" opacity="0.18" />
+      </symbol>
+    </svg>
+
+    <!-- ━━━ NAV ━━━ -->
+    <nav id="nav">
+      <a href="#" class="nav-logo" aria-label="Urban Wild — home">
+        <svg viewBox="0 0 220 110" fill="white"><use href="#mtn" /></svg>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">URBAN WILD</span>
+          <span class="nav-logo-sub">Peças originais selecionadas</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#categorias">Produtos</a></li>
+        <li><a href="#beneficios">Diferenciais</a></li>
+        <li><a href="#depoimentos">Avaliações</a></li>
+        <li>
+          <a href="https://wa.me/5548988180974" class="nav-btn">WhatsApp</a>
+        </li>
+      </ul>
+      <div class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </div>
+    </nav>
+
+    <!-- ━━━ HERO ━━━ -->
+    <section class="hero" id="inicio">
+      <div class="hero-bg"></div>
+      <div class="hero-veil"></div>
+      <div class="hero-topo" aria-hidden="true"></div>
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <span class="eyebrow-dot"></span>
+          The North Face · Originais · Brasil
+        </div>
+        <h1 class="hero-title">
+          EQUIPADO<br />
+          PARA <span class="accent">QUALQUER</span><br />
+          AVENTURA
+        </h1>
+        <p class="hero-sub">
+          A <strong>Urban Wild</strong> traz peças originais The North Face —
+          novas e usadas em ótimo estado — com curadoria cuidadosa e
+          <strong>preço justo</strong>. Envio para todo o Brasil.
+        </p>
+        <div class="hero-btns">
+          <a href="http://enjoei.com.br/@urban-27db4c" class="btn-white"
+            >Ver Produtos Disponíveis →</a
+          >
+          <a href="https://wa.me/5548988180974" class="btn-outline"
+            >💬 Chamar no WhatsApp</a
+          >
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-val">800+</div>
+            <div class="stat-label">Peças Vendidas</div>
+          </div>
+          <div>
+            <div class="stat-val">100%</div>
+            <div class="stat-label">Originais</div>
+          </div>
+          <div>
+            <div class="stat-val">5★</div>
+            <div class="stat-label">Avaliações</div>
+          </div>
+          <div>
+            <div class="stat-val">BR</div>
+            <div class="stat-label">Envio Nacional</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ━━━ TICKER ━━━ -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span class="t-item"
+          >ORIGINAIS THE NORTH FACE <span class="t-dot"></span
+        ></span>
+        <span class="t-item"
+          >ENVIO PARA TODO O BRASIL <span class="t-dot"></span
+        ></span>
+        <span class="t-item"
+          >PUFFERS · FLEECES · JAQUETAS <span class="t-dot"></span
+        ></span>
+        <span class="t-item">ESTOQUE LIMITADO <span class="t-dot"></span></span>
+        <span class="t-item"
+          >CURADORIA PEÇA A PEÇA <span class="t-dot"></span
+        ></span>
+        <span class="t-item"
+          >ATENDIMENTO DIRETO E RÁPIDO <span class="t-dot"></span
+        ></span>
+        <span class="t-item"
+          >NOVAS E USADAS EM ÓTIMO ESTADO <span class="t-dot"></span
+        ></span>
+        <span class="t-item"
+          >ORIGINAIS THE NORTH FACE <span class="t-dot"></span
+        ></span>
+        <span class="t-item"
+          >ENVIO PARA TODO O BRASIL <span class="t-dot"></span
+        ></span>
+        <span class="t-item"
+          >PUFFERS · FLEECES · JAQUETAS <span class="t-dot"></span
+        ></span>
+        <span class="t-item">ESTOQUE LIMITADO <span class="t-dot"></span></span>
+        <span class="t-item"
+          >CURADORIA PEÇA A PEÇA <span class="t-dot"></span
+        ></span>
+        <span class="t-item"
+          >ATENDIMENTO DIRETO E RÁPIDO <span class="t-dot"></span
+        ></span>
+        <span class="t-item"
+          >NOVAS E USADAS EM ÓTIMO ESTADO <span class="t-dot"></span
+        ></span>
+      </div>
+    </div>
+
+    <!-- ━━━ BENEFÍCIOS ━━━ -->
+    <section class="benefits-section" id="beneficios">
+      <div class="inner">
+        <div class="reveal">
+          <span class="s-label">Por que Urban Wild</span>
+          <h2 class="s-title">NOSSOS<br />DIFERENCIAIS</h2>
+          <p class="s-desc">
+            Cada peça passa por uma seleção rigorosa antes de chegar até você.
+            Qualidade, autenticidade e preço justo em cada pedido.
+          </p>
+        </div>
+        <div class="benefits-grid">
+          <div class="b-card reveal d1">
+            <span class="b-icon">✓</span>
+            <h3 class="b-title">100% ORIGINAIS</h3>
+            <p class="b-text">
+              Todas as peças são importadas. Nenhum produto falso ou réplica.
+              Garantia de autenticidade em cada compra.
+            </p>
+          </div>
+          <div class="b-card reveal d2">
+            <span class="b-icon">◈</span>
+            <h3 class="b-title">CURADORIA RIGOROSA</h3>
+            <p class="b-text">
+              Cada peça é avaliada individualmente. Peças usadas só entram no
+              estoque se estiverem em condição excelente, sem defeitos
+              relevantes.
+            </p>
+          </div>
+          <div class="b-card reveal d3">
+            <span class="b-icon">◎</span>
+            <h3 class="b-title">PREÇO JUSTO</h3>
+            <p class="b-text">
+              Muito abaixo do varejo tradicional. Você encontra jaquetas The
+              North Face premium sem pagar preço de shopping center.
+            </p>
+          </div>
+          <div class="b-card reveal d4">
+            <span class="b-icon">◻</span>
+            <h3 class="b-title">NOVAS & USADAS</h3>
+            <p class="b-text">
+              Trabalhamos com peças novas com etiqueta e usadas em ótimo estado
+              — mais opções, mais acessibilidade, mesmo padrão de qualidade.
+            </p>
+          </div>
+          <div class="b-card reveal d5">
+            <span class="b-icon">→</span>
+            <h3 class="b-title">ENVIO NACIONAL</h3>
+            <p class="b-text">
+              Enviamos para qualquer estado do Brasil. Embalagem cuidadosa e
+              rastreamento em tempo real para você acompanhar seu pedido.
+            </p>
+          </div>
+          <div class="b-card reveal d6">
+            <span class="b-icon">◈</span>
+            <h3 class="b-title">ATENDIMENTO DIRETO</h3>
+            <p class="b-text">
+              Você fala diretamente com quem cuida da loja. Sem robôs, sem
+              demora. Respondemos pelo Instagram e WhatsApp com agilidade.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ━━━ CATEGORIAS ━━━ -->
+    <section class="categories-section" id="categorias">
+      <div class="inner">
+        <div class="reveal">
+          <span class="s-label">O que você encontra</span>
+          <h2 class="s-title">EXPLORE AS<br />CATEGORIAS</h2>
+          <p class="s-desc">
+            Peças para quem vive a aventura — na montanha, na trilha ou nas ruas
+            da cidade.
+          </p>
+        </div>
+        <div class="cat-grid">
+          <a
+            href="https://instagram.com/urbanwildtnf"
+            class="cat-card reveal d1"
+          >
+            <span class="cat-icon">🧥</span>
+            <div class="cat-name">PUFFERS</div>
+            <p class="cat-desc">
+              Jaquetas com isolamento térmico para frio intenso, trilhas de
+              altitude e destinos gelados.
+            </p>
+            <span class="cat-link"
+              >Ver peças <span class="cat-arrow">→</span></span
+            >
+          </a>
+          <a
+            href="https://instagram.com/urbanwildtnf"
+            class="cat-card reveal d2"
+          >
+            <span class="cat-icon">🏔️</span>
+            <div class="cat-name">FLEECES</div>
+            <p class="cat-desc">
+              Conforto e leveza para dias frios. Camada intermediária ou uso
+              casual com estilo outdoor.
+            </p>
+            <span class="cat-link"
+              >Ver peças <span class="cat-arrow">→</span></span
+            >
+          </a>
+          <a
+            href="https://instagram.com/urbanwildtnf"
+            class="cat-card reveal d3"
+          >
+            <span class="cat-icon">🌧️</span>
+            <div class="cat-name">IMPERMEÁVEIS</div>
+            <p class="cat-desc">
+              Jaquetas shell e hardshell para chuva e vento. Gore-Tex e DryVent
+              para proteção total.
+            </p>
+            <span class="cat-link"
+              >Ver peças <span class="cat-arrow">→</span></span
+            >
+          </a>
+          <a
+            href="https://instagram.com/urbanwildtnf"
+            class="cat-card reveal d4"
+          >
+            <span class="cat-icon">👕</span>
+            <div class="cat-name">CAMISETAS</div>
+            <p class="cat-desc">
+              Básicas, técnicas e de coleções especiais. Para trilhas, viagens
+              ou o look casual outdoor.
+            </p>
+            <span class="cat-link"
+              >Ver peças <span class="cat-arrow">→</span></span
+            >
+          </a>
+          <a
+            href="https://instagram.com/urbanwildtnf"
+            class="cat-card reveal d5"
+          >
+            <span class="cat-icon">🎒</span>
+            <div class="cat-name">MOCHILAS &<br />ACESSÓRIOS</div>
+            <p class="cat-desc">
+              Mochilas técnicas e acessórios TNF para complementar seu setup
+              outdoor ou urbano.
+            </p>
+            <span class="cat-link"
+              >Ver peças <span class="cat-arrow">→</span></span
+            >
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ━━━ POR QUE COMPRAR ━━━ -->
+    <section class="why-section" id="sobre">
+      <div class="why-wm" aria-hidden="true">UW</div>
+      <div class="inner">
+        <div class="why-inner">
+          <div class="reveal">
+            <span class="s-label">Nossa missão</span>
+            <h2 class="s-title">NÃO<br />VENDEMOS<br />SÓ ROUPAS</h2>
+            <p class="s-desc">
+              A Urban Wild nasceu da paixão por aventura e pelo estilo outdoor.
+              Acreditamos que equipamento de qualidade não deveria ser
+              privilégio de poucos.
+            </p>
+            <ul class="why-list">
+              <li>
+                <span class="why-check">✓</span>
+                <span
+                  >Peças importadas — sem intermediários, sem
+                  falsificações.</span
+                >
+              </li>
+              <li>
+                <span class="why-check">✓</span>
+                <span
+                  >Preços pensados para quem ama aventura, não para quem ama
+                  gastar.</span
+                >
+              </li>
+              <li>
+                <span class="why-check">✓</span>
+                <span
+                  >Curadoria feita por pessoas que realmente usam essas peças em
+                  trilhas e viagens.</span
+                >
+              </li>
+              <li>
+                <span class="why-check">✓</span>
+                <span
+                  >Estoque rotativo — aparece uma peça incrível, basta chamar
+                  antes que saia.</span
+                >
+              </li>
+              <li>
+                <span class="why-check">✓</span>
+                <span
+                  >Sustentabilidade: peças usadas bem cuidadas prolongam a vida
+                  útil de roupas premium.</span
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="reveal d2">
+            <div class="why-card">
+              <p class="why-quote">
+                "EQUIPADO PARA<br /><em>QUALQUER</em><br />AVENTURA."
+              </p>
+              <p class="why-text">
+                A Urban Wild é mais do que uma loja — é uma curadoria de estilo
+                de vida. Cada peça foi escolhida para quem não quer abrir mão da
+                qualidade, mas também não quer pagar preço absurdo.
+              </p>
+              <p class="why-text">
+                Seja para uma trilha em Floripa, uma viagem à Patagônia ou o dia
+                a dia com estilo outdoor, temos o que você precisa.
+              </p>
+              <a href="https://instagram.com/urbanwildtnf" class="btn-sand"
+                >Ver no Instagram →</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ━━━ DEPOIMENTOS ━━━ -->
+    <section class="testimonials-section" id="depoimentos">
+      <div class="inner">
+        <div class="reveal">
+          <span class="s-label">Quem já comprou</span>
+          <h2 class="s-title">O QUE DIZEM<br />NOSSOS CLIENTES</h2>
+        </div>
+        <div class="test-grid">
+          <div class="test-card reveal d1">
+            <span class="test-badge">Verificado ✓</span>
+            <div class="test-stars">★★★★★</div>
+            <p class="test-text">
+              "Produto original e em ótimo estado. A jaqueta chegou exatamente
+              como descrita, melhor do que esperava. Super recomendo!"
+            </p>
+            <div class="test-author">
+              <div class="test-avatar">M</div>
+              <div>
+                <div class="test-name">Mateus R.</div>
+                <div class="test-city">São Paulo, SP</div>
+              </div>
+            </div>
+          </div>
+          <div class="test-card reveal d2">
+            <span class="test-badge">Verificado ✓</span>
+            <div class="test-stars">★★★★★</div>
+            <p class="test-text">
+              "Chegou rápido e muito bem embalada. A puffer era nova e o preço
+              estava bem abaixo do que encontrei em qualquer outra loja.
+              Voltarei a comprar!"
+            </p>
+            <div class="test-author">
+              <div class="test-avatar">A</div>
+              <div>
+                <div class="test-name">Ana C.</div>
+                <div class="test-city">Curitiba, PR</div>
+              </div>
+            </div>
+          </div>
+          <div class="test-card reveal d3">
+            <span class="test-badge">Verificado ✓</span>
+            <div class="test-stars">★★★★★</div>
+            <p class="test-text">
+              "Atendimento excelente! Me ajudou a escolher o modelo ideal para
+              minha trilha. A jaqueta impermeável foi perfeita. Muito
+              profissional e confiável."
+            </p>
+            <div class="test-author">
+              <div class="test-avatar">R</div>
+              <div>
+                <div class="test-name">Rafael T.</div>
+                <div class="test-city">Belo Horizonte, MG</div>
+              </div>
+            </div>
+          </div>
+          <div class="test-card reveal d4">
+            <span class="test-badge">Verificado ✓</span>
+            <div class="test-stars">★★★★★</div>
+            <p class="test-text">
+              "Comprei um fleece usado e parecia novo. Qualidade impecável e
+              entrega rápida. É difícil encontrar peças assim com esse preço no
+              Brasil."
+            </p>
+            <div class="test-author">
+              <div class="test-avatar">J</div>
+              <div>
+                <div class="test-name">Julia F.</div>
+                <div class="test-city">Porto Alegre, RS</div>
+              </div>
+            </div>
+          </div>
+          <div class="test-card reveal d5">
+            <span class="test-badge">Verificado ✓</span>
+            <div class="test-stars">★★★★★</div>
+            <p class="test-text">
+              "Finalmente achei uma loja que vende TNF original com preço justo.
+              Já fiz três compras e sempre saí satisfeito. Atendimento rápido e
+              transparente."
+            </p>
+            <div class="test-author">
+              <div class="test-avatar">L</div>
+              <div>
+                <div class="test-name">Lucas M.</div>
+                <div class="test-city">Florianópolis, SC</div>
+              </div>
+            </div>
+          </div>
+          <div class="test-card reveal d6">
+            <span class="test-badge">Verificado ✓</span>
+            <div class="test-stars">★★★★★</div>
+            <p class="test-text">
+              "Comprei uma mochila e uma camiseta juntas. Tudo original,
+              embalagem cuidadosa e frete ágil. A Urban Wild virou minha
+              referência para TNF. Nota 10!"
+            </p>
+            <div class="test-author">
+              <div class="test-avatar">C</div>
+              <div>
+                <div class="test-name">Camila S.</div>
+                <div class="test-city">Rio de Janeiro, RJ</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ━━━ FINAL CTA ━━━ -->
+    <section class="cta-section">
+      <svg
+        class="cta-mountain"
+        viewBox="0 0 220 110"
+        fill="black"
+        aria-hidden="true"
+      >
+        <use href="#mtn" />
+      </svg>
+      <div class="cta-inner reveal">
+        <span class="s-label">Pronto para explorar?</span>
+        <h2 class="s-title">ENCONTRE SUA<br />PRÓXIMA PEÇA</h2>
+        <p class="cta-sub">
+          Estoque limitado e peças únicas. Não espere muito — as melhores saem
+          rápido.
+        </p>
+        <div class="cta-btns">
+          <a href="https://instagram.com/urbanwildtnf" class="btn-white"
+            >Ver Produtos no Instagram →</a
+          >
+          <a href="https://wa.me/5548988180974" class="btn-outline-dark"
+            >💬 Falar no WhatsApp</a
+          >
+        </div>
+        <p class="cta-urgency">
+          ✓ Originais garantidos &nbsp;·&nbsp; ✓ Envio para todo o Brasil
+          &nbsp;·&nbsp; ✓ Atendimento direto
+        </p>
+      </div>
+    </section>
+
+    <!-- ━━━ FOOTER ━━━ -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div>
+            <div class="footer-logo">
+              <svg viewBox="0 0 220 110" fill="white" aria-hidden="true">
+                <use href="#mtn" />
+              </svg>
+              <div>
+                <div class="footer-logo-name">URBAN WILD</div>
+                <div class="footer-logo-sub">Peças originais selecionadas</div>
+              </div>
+            </div>
+            <p class="footer-tagline">
+              Peças originais The North Face — novas e usadas com curadoria e
+              preço justo. Para quem vive a aventura.
+            </p>
+            <div class="footer-socials">
+              <a href="https://instagram.com/urbanwildtnf" class="social-pill"
+                >📷 Instagram</a
+              >
+              <a href="https://wa.me/5548988180974" class="social-pill"
+                >💬 WhatsApp</a
+              >
+            </div>
+          </div>
+          <div class="f-col">
+            <div class="f-col-title">PRODUTOS</div>
+            <ul>
+              <li><a href="#">Puffers</a></li>
+              <li><a href="#">Fleeces</a></li>
+              <li><a href="#">Impermeáveis</a></li>
+              <li><a href="#">Camisetas</a></li>
+              <li><a href="#">Mochilas & Acessórios</a></li>
+            </ul>
+          </div>
+          <div class="f-col">
+            <div class="f-col-title">INFORMAÇÕES</div>
+            <ul>
+              <li><span>Envio para todo o Brasil</span></li>
+              <li><span>Pagamento via Pix ou cartão</span></li>
+              <li><span>Peças novas e usadas avaliadas</span></li>
+              <li><span>Atendimento via Instagram / WhatsApp</span></li>
+            </ul>
+          </div>
+          <div class="f-col">
+            <div class="f-col-title">GARANTIAS</div>
+            <ul>
+              <li><span>✓ Originalidade garantida</span></li>
+              <li><span>✓ Descrição fiel à condição real</span></li>
+              <li><span>✓ Embalagem protetora</span></li>
+              <li><span>✓ Rastreamento de entrega</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p class="footer-copy">
+            © 2025 Urban Wild — Todos os direitos reservados.
+          </p>
+          <div class="footer-auth">
+            ✓ Apenas produtos originais The North Face
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const nav = document.getElementById("nav");
+      window.addEventListener(
+        "scroll",
+        () => {
+          nav.classList.toggle("scrolled", window.scrollY > 50);
+        },
+        { passive: true },
+      );
+
+      const els = document.querySelectorAll(".reveal");
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+      els.forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>
